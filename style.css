@@ -238,6 +238,7 @@ h2 { margin: 0 0 8px; font-size: clamp(1.5rem, 3.6vw, 2rem); line-height: 1.3; t
 
 .foot { border-top: 1px solid var(--line); padding: 28px 16px 48px; text-align: center; color: var(--mist); font-size: .85rem; }
 .foot p { margin: 0 0 4px; }
+.foot .copy { margin-top: 14px; font-family: var(--display); letter-spacing: .08em; color: var(--paper); }
 
 /* ── 좁은 화면 ────────────────────── */
 @media (max-width: 760px) {
