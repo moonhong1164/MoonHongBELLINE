@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MoonHongBELLINE</title>
+<meta name="description" content="호로스코프 벨린 53장으로 뽑는 오라클. 한 장, 세 장, 다섯 장 배열과 카드 도감.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230c1024'/%3E%3Cpath d='M32 8l4 20 20 4-20 4-4 20-4-20-20-4 20-4z' fill='%23f2c230'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Gowun+Batang:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="brand" href="#draw" aria-label="MoonHongBELLINE 처음으로">Moon<b>Hong</b>BELLINE</a>
+  <nav aria-label="주요 메뉴">
+    <a href="#draw">카드 뽑기</a>
+    <a href="#library">카드 도감</a>
+    <a href="#guide">읽는 법</a>
+    <a href="#about">덱 이야기</a>
+  </nav>
+</header>
+
+<main>
+  <section class="intro" id="draw">
+    <p class="eyebrow">Horoscope Belline · 쉰세 장의 그림</p>
+    <h1>별 하나를 바라보며,<br>카드에게 묻습니다</h1>
+    <p class="lead">호로스코프 벨린은 역방향 없이, 곁에 놓인 카드와 함께 읽는 덱입니다. 같은 카드라도 옆자리에 무엇이 오느냐에 따라 밝아지기도 하고 어두워지기도 합니다.</p>
+
+    <form class="setup" id="setup">
+      <fieldset class="spreads">
+        <legend>배열법을 고르세요</legend>
+        <div class="spread-options" id="spreadOptions"></div>
+      </fieldset>
+
+      <div class="question">
+        <label for="question">마음속 질문 <span>(선택)</span></label>
+        <input id="question" name="question" type="text" maxlength="80" autocomplete="off" placeholder="예) 그 사람은 지금 어떤 마음일까요?">
+      </div>
+
+      <button class="primary" type="submit">카드 섞기</button>
+    </form>
+  </section>
+
+  <section class="table" id="table" hidden>
+    <div class="table-head">
+      <h2 id="spreadTitle"></h2>
+      <p class="asked" id="asked" hidden></p>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="deck" id="deck" aria-label="뒤집어 놓은 카드 53장"></div>
+    <div class="layout" id="layout"></div>
+
+    <div class="table-actions" id="tableActions" hidden>
+      <button type="button" class="ghost" id="flipAll">모두 뒤집기</button>
+      <button type="button" class="ghost" id="redraw">다시 뽑기</button>
+      <a class="ghost" href="#draw">배열법 바꾸기</a>
+    </div>
+
+    <aside class="together" id="together" hidden></aside>
+    <div class="readings" id="readings"></div>
+  </section>
+
+  <section class="library" id="library">
+    <h2>카드 도감</h2>
+    <p class="section-lead">1번부터 52번, 그리고 번호 없는 파란 카드까지. 눌러서 키워드와 풀이를 펼쳐 보세요.</p>
+    <div class="filters" id="filters" role="group" aria-label="성격별로 보기">
+      <button type="button" class="chip is-on" data-tone="all" aria-pressed="true">전체 <span id="cntAll"></span></button>
+      <button type="button" class="chip" data-tone="pos" aria-pressed="false">긍정 <span id="cntPos"></span></button>
+      <button type="button" class="chip" data-tone="neu" aria-pressed="false">중립 <span id="cntNeu"></span></button>
+      <button type="button" class="chip" data-tone="neg" aria-pressed="false">부정 <span id="cntNeg"></span></button>
+    </div>
+    <div class="card-grid" id="cardGrid"></div>
+  </section>
+
+  <section class="prose" id="guide">
+    <h2>벨린을 읽는 법</h2>
+    <p class="section-lead">이 덱은 한 장의 뜻보다 카드끼리의 관계가 더 많은 것을 말해 줍니다.</p>
+
+    <ol class="guide-steps">
+      <li>
+        <h3>성격부터 봅니다</h3>
+        <p>카드는 긍정, 부정, 중립 셋으로 나뉩니다. 펼친 카드에서 어느 쪽이 많은지가 전체 분위기입니다.</p>
+        <p>중립 카드는 스스로 색을 정하지 않습니다. 남자의 생각, 출발, 메시지 같은 카드는 앞뒤 카드를 보고 읽으세요.</p>
+      </li>
+      <li>
+        <h3>옆자리를 봅니다</h3>
+        <p>돈·번영 옆에 부정 카드가 오면 돈이 나가고, 명성 옆에 오면 나쁜 소문이 됩니다. 반대로 악마가 긍정 카드 곁에 서면 악마의 뜻이 더 짙어집니다.</p>
+        <p>여러 장을 뽑으면 이런 조합을 ‘함께 읽기’에 따로 모아 보여 드립니다.</p>
+      </li>
+      <li>
+        <h3>달래 주는 카드를 찾습니다</h3>
+        <p>진정·완화, 완수·행복, 보호·후원, 그리고 파란 행운 카드는 부정 카드의 기운을 눌러 줍니다. 어두운 카드가 나와도 이 넷 중 하나가 함께라면 숨통이 트입니다.</p>
+      </li>
+      <li>
+        <h3>그림을 그대로 읽습니다</h3>
+        <p>질병·우울 카드에서는 독수리와 두꺼비 중 눈이 먼저 가는 쪽이 답입니다. 남자의 생각은 멀리, 여자의 생각은 가까이 바라봅니다. 외운 뜻보다 그림이 먼저 말하게 두세요.</p>
+      </li>
+    </ol>
+
+    <ul class="cautions">
+      <li><strong>카드는 참고입니다.</strong>풀이는 지금의 흐름을 비춰 줄 뿐, 결정과 책임은 언제나 내 몫입니다.</li>
+      <li><strong>건강·법률·돈 문제는 전문가에게.</strong>카드에 병원이나 소송이 보여도 그것은 살펴보라는 신호이지 진단이 아닙니다.</li>
+      <li><strong>같은 질문을 되풀이해 뽑지 마세요.</strong>마음에 드는 답이 나올 때까지 뽑으면 어떤 답도 믿을 수 없게 됩니다.</li>
+    </ul>
+  </section>
+
+  <section class="prose" id="about">
+    <h2>덱 이야기</h2>
+    <p class="section-lead">19세기의 점술가가 그렸다고 전해지는 카드가 백 년 뒤 다른 점술가의 손에서 다시 태어났습니다. 호로스코프 벨린은 그 이야기의 막내입니다.</p>
+
+    <div class="about-grid">
+      <article>
+        <h3>마법사 에드몽</h3>
+        <p>이야기는 <strong>쥘 샤를 에르네스트 비요도</strong>(1829~1881)에서 시작합니다. ‘마주 에드몽(Mage Edmond)’이라는 이름으로 활동한 프랑스의 점술가입니다.</p>
+        <p>알렉상드르 뒤마, 빅토르 위고, 나폴레옹 3세와 외제니 황후가 그를 찾았다는 이야기가 전해지지만, 확인된 기록이라기보다 전설에 가깝습니다. 카드는 그가 1845년에서 1865년 사이에 손수 그렸다고 합니다.</p>
+      </article>
+
+      <article>
+        <h3>다시 찾아낸 사람, 벨린</h3>
+        <p><strong>마르셀 벨린</strong>(본명 마르셀 포르제, 1924~2001)은 1954년부터 파리 9구에서 상담실을 연 점술가이자 작가입니다. 골동품상으로 일하던 무렵 에드몽의 것이라는 카드와 문서를 손에 넣었다고 합니다.</p>
+        <p>어떻게 얻었는지는 그의 책마다 조금씩 다르게 적혀 있고, 카드가 에드몽의 작품이라는 것과 그려진 시기 역시 벨린 본인의 말에 기대고 있습니다. 그는 이 카드에 자기 이름을 붙여 세상에 내놓았습니다.</p>
+      </article>
+
+      <article>
+        <h3>오라클 벨린</h3>
+        <p>1960년 라 뒤칼(La Ducale), 이듬해 그리모(Grimaud)에서 나온 쉰세 장의 카드가 ‘오라클 벨린’입니다. 마르세유 타로와 에틸라 카드의 그림을 섞고, 카드마다 행성을 짝지어 타로와 점성술을 한데 엮었습니다.</p>
+        <p>프랑스에서는 지금도 가장 널리 쓰이는 오라클 가운데 하나입니다. 원본으로 전해지는 카드는 마르세유의 유럽지중해문명박물관(Mucem)에 있습니다.</p>
+      </article>
+
+      <article>
+        <h3>호로스코프 벨린</h3>
+        <p>1964년에 나온 호로스코프 벨린은 오라클 벨린을 처음 배우는 사람도 쓸 수 있게 풀어낸 덱입니다. 행성 구분을 덜어 내고, 상징을 단순하게 다듬고, 1960년대다운 원색 그림을 입혔습니다. 그림을 그린 사람의 이름은 전해지지 않습니다.</p>
+        <p>그래서 이 덱에는 외워야 할 대응표가 없습니다. 문, 해바라기, 까치, 미로처럼 그림이 곧 뜻입니다.</p>
+      </article>
+
+      <article>
+        <h3>쉰두 장과 파란 카드</h3>
+        <p>번호가 붙은 카드는 52장이고, 카드마다 프랑스어 이름과 영어 이름이 함께 적혀 있습니다.</p>
+        <p>마지막 한 장은 번호도 그림도 없는 파란 카드입니다. 부적처럼 간직하는 카드이고, 잃어버린 카드를 대신하기도 합니다. 이 사이트에서는 ‘행운’ 카드로 덱에 섞어 씁니다.</p>
+      </article>
+
+      <article>
+        <h3>벨린의 세 가지 덱</h3>
+        <p>벨린의 이름이 붙은 덱은 셋입니다. 행성과 함께 읽는 <strong>오라클 벨린</strong>, 그것을 쉽게 풀어낸 <strong>호로스코프 벨린</strong>, 그리고 마르세유 타로를 본뜬 78장짜리 <strong>그랑 타로 벨린</strong>(1966)입니다.</p>
+        <p>셋은 서로 다른 덱이라 카드 번호와 뜻이 그대로 통하지 않습니다. 오라클 벨린 해설서를 이 덱에 그대로 대입하면 어긋납니다.</p>
+      </article>
+    </div>
+
+    <div>
+      <h3>벨린이 지나온 길</h3>
+      <dl class="timeline">
+        <dt>1829년</dt><dd>훗날의 마주 에드몽, 쥘 샤를 에르네스트 비요도가 프랑스 욘 지방에서 태어납니다.</dd>
+        <dt>1845~1865년</dt><dd>에드몽이 카드를 그렸다고 전해지는 시기입니다.</dd>
+        <dt>1881년</dt><dd>에드몽이 세상을 떠납니다.</dd>
+        <dt>1954년</dt><dd>마르셀 벨린이 파리 9구에 상담실을 엽니다.</dd>
+        <dt>1960~1961년</dt><dd>오라클 벨린이 라 뒤칼과 그리모에서 차례로 출간됩니다.</dd>
+        <dt>1964년</dt><dd>입문자를 위한 호로스코프 벨린이 나옵니다.</dd>
+        <dt>1966년</dt><dd>78장짜리 그랑 타로 벨린이 나옵니다.</dd>
+        <dt>1989년</dt><dd>프랑스 카르트(France Cartes)가 호로스코프 벨린을 다시 펴냅니다.</dd>
+        <dt>2001년</dt><dd>마르셀 벨린이 세상을 떠납니다.</dd>
+      </dl>
+      <p class="fine">연도와 일화는 자료마다 조금씩 다릅니다. 여기에는 프랑스어권 자료에서 대체로 일치하는 내용을 옮겼습니다.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>카드 그림의 권리는 원 발행사에 있습니다. 덱을 가진 사람의 개인 리딩·학습용입니다.</p>
+</footer>
+
+<dialog class="card-dialog" id="cardDialog" aria-labelledby="dialogTitle">
+  <button type="button" class="dialog-close" id="dialogClose" aria-label="닫기">×</button>
+  <div id="dialogBody"></div>
+</dialog>
+
+<script src="cards.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
