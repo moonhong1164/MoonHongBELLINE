@@ -12,18 +12,49 @@
       intro: '하루의 흐름이나 지금 필요한 한마디를 가볍게 물을 때.',
       positions: { 1: ['메시지', '지금 나에게 건네는 말'] }
     },
+    two: {
+      name: '두 장 읽기', sub: '투카드', count: 2, order: [1, 2], line: true,
+      mini: ['"a b"', [['a', 1], ['b', 2]]],
+      intro: '답을 이루는 두 가지 요소를 봅니다. 타로나 다른 덱에 곁들이는 보조 배열로도 좋습니다.',
+      positions: {
+        1: ['첫째 요소', '질문의 답을 이루는 한 가지'],
+        2: ['둘째 요소', '답을 이루는 나머지 한 가지']
+      }
+    },
     three: {
-      name: '세 장 흐름', sub: '쓰리카드', count: 3, order: [1, 2, 3],
+      name: '세 장 흐름', sub: '과거·현재·미래', count: 3, order: [1, 2, 3], line: true,
       mini: ['"a b c"', [['a', 1], ['b', 2], ['c', 3]]],
-      intro: '과거·현재·미래. 가운데 카드를 중심에 두고 양옆 카드로 뜻을 물들입니다.',
+      intro: '가운데 카드를 중심에 두고 양옆 카드로 뜻을 물들입니다.',
       positions: {
         1: ['과거', '여기까지 온 배경'],
         2: ['현재', '지금의 상황'],
         3: ['미래', '이대로 흘러갈 때의 방향']
       }
     },
+    odds: {
+      name: '유리·불리·결과', sub: '쓰리카드', count: 3, order: [1, 2, 3], line: true,
+      mini: ['"a b c"', [['a', 1], ['b', 2], ['c', 3]]],
+      intro: '목표를 이룰 수 있을지 물을 때. 내 편인 것과 걸림돌을 나란히 놓고 봅니다.',
+      positions: {
+        1: ['유리한 것', '지금 내게 유리하게 작용하는 것, 써먹을 수 있는 것'],
+        2: ['불리한 것', '지금 내게 불리한 것, 실패로 이어질 수 있는 것'],
+        3: ['결과', '질문의 답이자 전체를 아우르는 결과']
+      }
+    },
+    cross: {
+      name: '십자 배열', sub: '파이브카드', count: 5, order: [1, 2, 3, 4, 5],
+      mini: ['". c ." "a e b" ". d ."', [['a', 1], ['b', 2], ['c', 3], ['d', 4], ['e', 5]]],
+      intro: '벨린에서 가장 널리 쓰는 배열. 목표를 이루려면 어떻게 해야 하는지까지 봅니다.',
+      positions: {
+        1: ['현재', '지금의 상태와 마음', 'mind'],
+        2: ['걸림돌', '약점, 목표를 가로막는 것'],
+        3: ['조언', '따라가야 할 길'],
+        4: ['답', '질문에 대한 답이자 결과'],
+        5: ['요약', '이 일이 결국 어떤 이야기인지']
+      }
+    },
     five: {
-      name: '다섯 장 줄 배열', sub: '파이브카드', count: 5, order: [1, 2, 3, 4, 5],
+      name: '다섯 장 줄 배열', sub: '한 줄 읽기', count: 5, order: [1, 2, 3, 4, 5], line: true,
       mini: ['"a b c d e"', [['a', 1], ['b', 2], ['c', 3], ['d', 4], ['e', 5]]],
       intro: '왼쪽에서 오른쪽으로 한 줄. 옆자리 카드끼리의 조합을 가장 넉넉하게 읽습니다.',
       positions: {
@@ -33,8 +64,26 @@
         4: ['조언', '내가 취할 태도'],
         5: ['결과', '흘러갈 방향']
       }
+    },
+    month: {
+      name: '한 달 운세', sub: '세븐카드', count: 7, order: [1, 2, 3, 4, 5, 6, 7],
+      mini: ['"a a" "b c" "d e" "f g"', [['a', 1], ['b', 2], ['c', 3], ['d', 4], ['e', 5], ['f', 6], ['g', 7]]],
+      intro: '보고 싶은 달이나 기간을 먼저 정하고 뽑습니다. 마음, 사람, 일, 돈을 차례로 봅니다.',
+      positions: {
+        1: ['마음', '그 기간 동안 전반적으로 느끼게 될 마음', 'mind'],
+        2: ['인간관계 ①', '사람 사이의 운'],
+        3: ['인간관계 ②', '사람 사이의 운'],
+        4: ['일 ①', '일과 직업의 운', 'work'],
+        5: ['일 ②', '일과 직업의 운', 'work'],
+        6: ['돈 ①', '재정과 금전의 운', 'money'],
+        7: ['돈 ②', '재정과 금전의 운', 'money']
+      }
     }
   };
+
+  const TOPICS = [['contact', '연락'], ['mind', '속마음'], ['love', '연애'], ['money', '금전'], ['health', '건강'], ['pass', '합격'], ['work', '직업·사업']];
+  const FORTUNES = window.FORTUNES || {};
+  const COMBOS = window.COMBOS;
 
   const TONE = { pos: '긍정', neu: '중립', neg: '부정' };
 
@@ -79,31 +128,35 @@
       (c.soothe ? '<span class="tag">부정 카드 완화</span>' : '') +
       (c.tone === 'neu' ? '<span class="tag">주변 카드 영향</span>' : '') + '</div>';
   }
-  function bodyHTML(c) {
+  function fortuneHTML(c, focus) {
+    const f = FORTUNES[c.n];
+    if (!f) return '';
+    return '<div><p class="sub">주제별 풀이</p><dl class="fortune">' +
+      TOPICS.map(([key, label], i) =>
+        `<dt${key === focus ? ' class="is-focus"' : ''}>${label}</dt><dd${key === focus ? ' class="is-focus"' : ''}>${esc(f[i])}</dd>`).join('') +
+      '</dl></div>';
+  }
+  function bodyHTML(c, focus) {
     return tagsHTML(c) +
       `<div><p class="sub">키워드</p><ul class="kw">${c.kw.map((k) => `<li>${esc(k)}</li>`).join('')}</ul></div>` +
       `<div><p class="sub">풀이</p><ul class="notes">${c.notes.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></div>` +
+      fortuneHTML(c, focus) +
       `<div><p class="sub">전통 풀이 한 줄</p><p class="src">${esc(c.src)}</p></div>`;
   }
   function titleHTML(c, id) {
     return `<h3${id ? ` id="${id}"` : ''}><b class="num">${numLabel(c)}</b>${esc(c.ko)} <span>${esc(c.fr)} · ${esc(c.en)}</span></h3>`;
   }
-  function readingHTML(pos, label, c) {
+  function readingHTML(pos, label, c, focus) {
     return `<div class="reading-card">${faceHTML(c)}</div>` +
       '<div class="reading-body">' +
-      `<p class="pos"><b>${pos}</b>${esc(label)}</p>` + titleHTML(c) + bodyHTML(c) + '</div>';
+      `<p class="pos"><b>${pos}</b>${esc(label)}</p>` + titleHTML(c) + bodyHTML(c, focus) + '</div>';
   }
   function dialogHTML(c) {
     return `<div class="dialog-head"><div class="reading-card">${faceHTML(c)}</div><div>${titleHTML(c, 'dialogTitle')}</div></div>` +
       `<div class="dialog-sections">${bodyHTML(c)}</div>`;
   }
 
-  /* ── 함께 읽기: 카드 조합 규칙 ───────── */
-  const PAIRS = [
-    [27, 14, '큐피드와 악마가 만났습니다. 불륜이나 떳떳하지 못한 끌림을 암시합니다.'],
-    [27, 17, '큐피드와 이동이 만났습니다. 사랑의 도피, 사랑을 따라 움직이는 일.'],
-    [28, 14, '결합과 악마가 만났습니다. 불륜, 이혼처럼 관계에 금이 가는 일을 조심하세요.']
-  ];
+  /* ── 함께 읽기: 카드 조합 규칙 (fortunes.js의 COMBOS) ───────── */
   const WITH_NEG = {
     7: '신뢰·우정이 부정 카드와 함께라 구설수가 따를 수 있습니다.',
     8: '명예가 부정 카드와 함께라 혼자만의 명예이거나 명예가 흔들릴 수 있습니다.',
@@ -115,7 +168,7 @@
     44: '명성이 부정 카드와 함께라 좋지 않은 소문이 돌 수 있습니다.'
   };
 
-  function togetherHTML(cards) {
+  function togetherHTML(cards, isLine) {
     const count = { pos: 0, neu: 0, neg: 0 };
     cards.forEach((c) => { count[c.tone]++; });
     const has = (n) => cards.some((c) => c.n === n);
@@ -127,7 +180,17 @@
     else if (count.neg > count.pos) lines.push('부정 카드가 더 많습니다. 서두르기보다 걸림돌이 무엇인지 먼저 살필 때입니다.');
     else lines.push('긍정과 부정이 팽팽합니다. 중립 카드와 옆자리 카드가 어느 쪽 손을 들어 주는지 보세요.');
 
-    PAIRS.forEach(([a, b, text]) => { if (has(a) && has(b)) lines.push(text); });
+    COMBOS.trio.forEach(([a, bs, text]) => { if (has(a) && bs.every(has)) lines.push(text); });
+    COMBOS.pair.forEach(([a, bs, text]) => { if (has(a) && bs.some(has)) lines.push(text); });
+    if (isLine) {
+      cards.forEach((c, i) => {
+        const l = cards[i - 1], r = cards[i + 1];
+        if (COMBOS.between[c.n] && l && r && l.tone === 'neg' && r.tone === 'neg') lines.push(COMBOS.between[c.n]);
+      });
+    }
+    if (!negs.length && count.pos > 1) {
+      Object.keys(COMBOS.withPos).forEach((n) => { if (has(Number(n))) lines.push(COMBOS.withPos[n]); });
+    }
     if (negs.length) {
       Object.keys(WITH_NEG).forEach((n) => { if (has(Number(n))) lines.push(WITH_NEG[n]); });
       if (soothers.length) {
@@ -181,7 +244,7 @@
     const layout = $('layout');
     layout.dataset.spread = state.spreadKey;
     layout.innerHTML = Object.keys(s.positions).map((p) =>
-      `<div class="slot" data-pos="${p}">` +
+      `<div class="slot" data-pos="${p}" style="grid-area:p${p}">` +
       `<div class="slot-label"><b>${p}</b>${esc(s.positions[p][0])}</div>` +
       `<div class="slot-hole">${p}</div><div class="slot-name"></div></div>`).join('');
 
@@ -202,7 +265,7 @@
     } else if (state.flipped.size < s.count) {
       msg = '카드를 눌러 뒤집어 보세요.';
     } else {
-      msg = s.count > 1 ? '왼쪽 1번 자리부터 차례로, 옆 카드와 이어서 읽어 보세요.' : '카드가 건네는 말을 읽어 보세요.';
+      msg = s.count > 1 ? '1번 자리부터 차례로, 다른 카드와 이어서 읽어 보세요.' : '카드가 건네는 말을 읽어 보세요.';
     }
     $('status').textContent = msg;
   }
@@ -246,14 +309,14 @@
     slot.querySelector('.slot-name').innerHTML = `<span class="dot tone-${c.tone}"></span>${esc(c.ko)}`;
 
     const article = $('readings').querySelector(`.reading[data-pos="${pos}"]`);
-    article.innerHTML = readingHTML(pos, s.positions[pos][1], c);
+    article.innerHTML = readingHTML(pos, s.positions[pos][1], c, s.positions[pos][2]);
     article.hidden = false;
 
     const done = state.flipped.size === s.count;
     if (done) $('flipAll').hidden = true;
     if (done && s.count > 1) {
       const inOrder = state.picks.slice().sort((a, b) => a.pos - b.pos).map((p) => p.card);
-      $('together').innerHTML = togetherHTML(inOrder);
+      $('together').innerHTML = togetherHTML(inOrder, !!s.line);
       $('together').hidden = false;
     }
     updateStatus();
