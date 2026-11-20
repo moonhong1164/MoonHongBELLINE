@@ -251,6 +251,7 @@
     $('readings').innerHTML = Object.keys(s.positions).map((p) =>
       `<article class="reading" data-pos="${p}" hidden></article>`).join('');
 
+    if (journal) journal.hide();
     updateStatus();
   }
 
@@ -314,6 +315,7 @@
 
     const done = state.flipped.size === s.count;
     if (done) $('flipAll').hidden = true;
+    if (done && journal) journal.show();
     if (done && s.count > 1) {
       const inOrder = state.picks.slice().sort((a, b) => a.pos - b.pos).map((p) => p.card);
       $('together').innerHTML = togetherHTML(inOrder, !!s.line);
@@ -395,6 +397,18 @@
   });
   $('dialogClose').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+
+  /* ── 리딩 일지에 저장 (허브의 journal-box.js를 못 불러오면 아무것도 하지 않는다) ── */
+  var journal = window.MoonHongJournal && window.MoonHongJournal.box ? window.MoonHongJournal.box({
+    deck: '호로스코프', deckId: 'belline', after: $('readings'),
+    read: () => {
+      const s = spread();
+      if (!state.picks.length || state.flipped.size < s.count) return null;
+      return { spread: s.name, question: state.question,
+        cards: state.picks.slice().sort((a, b) => a.pos - b.pos)
+          .map((p) => ({ name: p.card.ko, position: s.positions[p.pos][0], orientation: null })) };
+    }
+  }) : null;
 
   renderSpreadOptions();
   renderLibrary();
