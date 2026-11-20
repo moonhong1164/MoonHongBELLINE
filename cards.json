@@ -7,7 +7,7 @@
     {
       "id": "1",
       "name": "남자의 생각",
-      "image": "cards/01.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/01.png",
       "keywords": [
         "남성",
         "이성적",
@@ -21,7 +21,7 @@
     {
       "id": "2",
       "name": "여자의 생각",
-      "image": "cards/02.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/02.png",
       "keywords": [
         "여성",
         "감성적",
@@ -35,7 +35,7 @@
     {
       "id": "3",
       "name": "운명",
-      "image": "cards/03.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/03.png",
       "keywords": [
         "결단",
         "새로운 시작",
@@ -49,7 +49,7 @@
     {
       "id": "4",
       "name": "해바라기",
-      "image": "cards/04.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/04.png",
       "keywords": [
         "탄생",
         "희망",
@@ -64,7 +64,7 @@
     {
       "id": "5",
       "name": "상승",
-      "image": "cards/05.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/05.png",
       "keywords": [
         "개선",
         "진보",
@@ -79,7 +79,7 @@
     {
       "id": "6",
       "name": "보상 · 성공",
-      "image": "cards/06.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/06.png",
       "keywords": [
         "메달",
         "성과",
@@ -94,7 +94,7 @@
     {
       "id": "7",
       "name": "신뢰 · 우정",
-      "image": "cards/07.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/07.png",
       "keywords": [
         "충직",
         "믿음",
@@ -108,7 +108,7 @@
     {
       "id": "8",
       "name": "명예",
-      "image": "cards/08.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/08.png",
       "keywords": [
         "자존감",
         "사회적 가치",
@@ -123,7 +123,7 @@
     {
       "id": "9",
       "name": "선물 · 재능",
-      "image": "cards/09.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/09.png",
       "keywords": [
         "보상",
         "타고난 능력",
@@ -138,7 +138,7 @@
     {
       "id": "10",
       "name": "휴식 · 평화",
-      "image": "cards/10.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/10.png",
       "keywords": [
         "여행",
         "평온",
@@ -153,7 +153,7 @@
     {
       "id": "11",
       "name": "출발",
-      "image": "cards/11.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/11.png",
       "keywords": [
         "분리",
         "독립",
@@ -169,7 +169,7 @@
     {
       "id": "12",
       "name": "발견 · 폭로",
-      "image": "cards/12.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/12.png",
       "keywords": [
         "드러남",
         "진실",
@@ -183,7 +183,7 @@
     {
       "id": "13",
       "name": "웰빙 · 행복",
-      "image": "cards/13.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/13.png",
       "keywords": [
         "모임",
         "만남",
@@ -198,7 +198,7 @@
     {
       "id": "14",
       "name": "악마 · 배신",
-      "image": "cards/14.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/14.png",
       "keywords": [
         "구설수",
         "질투",
@@ -214,7 +214,7 @@
     {
       "id": "15",
       "name": "집 · 가정",
-      "image": "cards/15.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/15.png",
       "keywords": [
         "화목",
         "안정",
@@ -228,7 +228,7 @@
     {
       "id": "16",
       "name": "물",
-      "image": "cards/16.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/16.png",
       "keywords": [
         "물가",
         "해외",
@@ -243,7 +243,7 @@
     {
       "id": "17",
       "name": "이동 · 변화",
-      "image": "cards/17.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/17.png",
       "keywords": [
         "이사",
         "이동",
@@ -257,7 +257,7 @@
     {
       "id": "18",
       "name": "질병 · 우울",
-      "image": "cards/18.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/18.png",
       "keywords": [
         "우울감",
         "의기소침",
@@ -271,7 +271,7 @@
     {
       "id": "19",
       "name": "빛 · 지성",
-      "image": "cards/19.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/19.png",
       "keywords": [
         "문제 해결",
         "임기응변",
@@ -286,7 +286,7 @@
     {
       "id": "20",
       "name": "돈 · 번영",
-      "image": "cards/20.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/20.png",
       "keywords": [
         "재물",
         "비상금",
@@ -299,7 +299,7 @@
     {
       "id": "21",
       "name": "벌 · 착수",
-      "image": "cards/21.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/21.png",
       "keywords": [
         "일터",
         "성실",
@@ -314,7 +314,7 @@
     {
       "id": "22",
       "name": "까치",
-      "image": "cards/22.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/22.png",
       "keywords": [
         "사기",
         "수다",
@@ -329,7 +329,7 @@
     {
       "id": "23",
       "name": "메시지 · 소식",
-      "image": "cards/23.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/23.png",
       "keywords": [
         "소식",
         "제안",
@@ -344,7 +344,7 @@
     {
       "id": "24",
       "name": "비즈니스",
-      "image": "cards/24.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/24.png",
       "keywords": [
         "거래 성사",
         "언변",
@@ -360,7 +360,7 @@
     {
       "id": "25",
       "name": "진정 · 완화",
-      "image": "cards/25.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/25.png",
       "keywords": [
         "중화",
         "평화",
@@ -374,7 +374,7 @@
     {
       "id": "26",
       "name": "기쁨 · 즐거움",
-      "image": "cards/26.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/26.png",
       "keywords": [
         "오락",
         "연애",
@@ -388,7 +388,7 @@
     {
       "id": "27",
       "name": "큐피드",
-      "image": "cards/27.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/27.png",
       "keywords": [
         "애정",
         "새로운 만남",
@@ -403,7 +403,7 @@
     {
       "id": "28",
       "name": "결합",
-      "image": "cards/28.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/28.png",
       "keywords": [
         "유대감",
         "제휴",
@@ -419,7 +419,7 @@
     {
       "id": "29",
       "name": "둥지",
-      "image": "cards/29.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/29.png",
       "keywords": [
         "가족",
         "공동체",
@@ -434,7 +434,7 @@
     {
       "id": "30",
       "name": "바람개비",
-      "image": "cards/30.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/30.png",
       "keywords": [
         "변덕",
         "불안",
@@ -449,7 +449,7 @@
     {
       "id": "31",
       "name": "마녀",
-      "image": "cards/31.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/31.png",
       "keywords": [
         "빼앗김",
         "뒤통수",
@@ -465,7 +465,7 @@
     {
       "id": "32",
       "name": "열정",
-      "image": "cards/32.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/32.png",
       "keywords": [
         "강렬함",
         "집중",
@@ -479,7 +479,7 @@
     {
       "id": "33",
       "name": "노예",
-      "image": "cards/33.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/33.png",
       "keywords": [
         "제약",
         "통제",
@@ -494,7 +494,7 @@
     {
       "id": "34",
       "name": "소송 · 정의",
-      "image": "cards/34.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/34.png",
       "keywords": [
         "재판",
         "분쟁",
@@ -509,7 +509,7 @@
     {
       "id": "35",
       "name": "협상",
-      "image": "cards/35.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/35.png",
       "keywords": [
         "계약",
         "협의",
@@ -524,7 +524,7 @@
     {
       "id": "36",
       "name": "라이벌 · 적",
-      "image": "cards/36.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/36.png",
       "keywords": [
         "경쟁자",
         "공공의 적",
@@ -539,7 +539,7 @@
     {
       "id": "37",
       "name": "사고",
-      "image": "cards/37.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/37.png",
       "keywords": [
         "큰 사고",
         "파괴",
@@ -554,7 +554,7 @@
     {
       "id": "38",
       "name": "불",
-      "image": "cards/38.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/38.png",
       "keywords": [
         "열정",
         "의욕",
@@ -569,7 +569,7 @@
     {
       "id": "39",
       "name": "이상 · 아름다움",
-      "image": "cards/39.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/39.png",
       "keywords": [
         "매력",
         "희망",
@@ -584,7 +584,7 @@
     {
       "id": "40",
       "name": "화합 · 지원",
-      "image": "cards/40.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/40.png",
       "keywords": [
         "의지처",
         "조언",
@@ -599,7 +599,7 @@
     {
       "id": "41",
       "name": "지혜",
-      "image": "cards/41.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/41.png",
       "keywords": [
         "심사숙고",
         "학업운",
@@ -613,7 +613,7 @@
     {
       "id": "42",
       "name": "기부 · 상속재산",
-      "image": "cards/42.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/42.png",
       "keywords": [
         "유산",
         "부동산",
@@ -628,7 +628,7 @@
     {
       "id": "43",
       "name": "기회",
-      "image": "cards/43.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/43.png",
       "keywords": [
         "뜻밖의 행운",
         "횡재",
@@ -642,7 +642,7 @@
     {
       "id": "44",
       "name": "명성 · 유명세",
-      "image": "cards/44.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/44.png",
       "keywords": [
         "평판",
         "자부심",
@@ -656,7 +656,7 @@
     {
       "id": "45",
       "name": "완수 · 행복",
-      "image": "cards/45.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/45.png",
       "keywords": [
         "목표 달성",
         "행운의 상징",
@@ -669,7 +669,7 @@
     {
       "id": "46",
       "name": "무인도 · 고독",
-      "image": "cards/46.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/46.png",
       "keywords": [
         "고립",
         "헛된 노력",
@@ -684,7 +684,7 @@
     {
       "id": "47",
       "name": "불운",
-      "image": "cards/47.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/47.png",
       "keywords": [
         "무거운 짐",
         "건강 악화",
@@ -698,7 +698,7 @@
     {
       "id": "48",
       "name": "보호 · 후원",
-      "image": "cards/48.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/48.png",
       "keywords": [
         "하늘의 보호",
         "도움 주는 사람",
@@ -712,7 +712,7 @@
     {
       "id": "49",
       "name": "죽음 · 운명",
-      "image": "cards/49.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/49.png",
       "keywords": [
         "끝",
         "손실",
@@ -727,7 +727,7 @@
     {
       "id": "50",
       "name": "지연 · 장애",
-      "image": "cards/50.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/50.png",
       "keywords": [
         "브레이크",
         "방해",
@@ -741,7 +741,7 @@
     {
       "id": "51",
       "name": "하강 · 파괴",
-      "image": "cards/51.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/51.png",
       "keywords": [
         "종료",
         "실패",
@@ -755,7 +755,7 @@
     {
       "id": "52",
       "name": "수도원 · 미로",
-      "image": "cards/52.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/52.png",
       "keywords": [
         "막힘",
         "혼란",
@@ -770,7 +770,7 @@
     {
       "id": "53",
       "name": "행운",
-      "image": "cards/53.png",
+      "image": "https://moonhong1164.github.io/MoonHongBELLINE/cards/53.png",
       "keywords": [
         "무한한 가능성",
         "개운",
