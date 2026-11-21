@@ -65,6 +65,16 @@
         5: ['결과', '흘러갈 방향']
       }
     },
+    body: {
+      name: '머리·가슴·다리', sub: '쓰리카드', count: 3, order: [1, 2, 3],
+      mini: ['"a" "b" "c"', [['a', 1], ['b', 2], ['c', 3]]],
+      intro: '생각과 마음과 행동이 서로 어긋나 있지 않은지 볼 때. 위에서 아래로 놓습니다.',
+      positions: {
+        1: ['머리', '생각, 이성, 판단'],
+        2: ['가슴', '이성과 따로 움직이는 마음', 'mind'],
+        3: ['다리', '실제로 하고 있는 행동, 향하는 곳']
+      }
+    },
     month: {
       name: '한 달 운세', sub: '세븐카드', count: 7, order: [1, 2, 3, 4, 5, 6, 7],
       mini: ['"a a" "b c" "d e" "f g"', [['a', 1], ['b', 2], ['c', 3], ['d', 4], ['e', 5], ['f', 6], ['g', 7]]],
@@ -86,6 +96,7 @@
   const COMBOS = window.COMBOS;
   const PLANETS = window.PLANETS || {};
   const ORACLE_NAMES = window.ORACLE_NAMES || {};
+  const MB = window.MB || {};
   const PLANET_OF = {};
   Object.entries(PLANETS).forEach(([key, p]) => p.cards.forEach((n) => { PLANET_OF[n] = key; }));
   const planetOf = (c) => PLANETS[PLANET_OF[c.n]];
@@ -147,11 +158,18 @@
     const p = planetOf(c);
     const orig = ORACLE_NAMES[c.n] ? `오라클 벨린에서는 「${esc(ORACLE_NAMES[c.n])}」 카드입니다. ` : '';
     if (!p) {
-      return `<div><p class="sub">행성</p><p class="src">${orig}${c.blank ? '번호도 행성도 없는 부적 카드입니다. 어느 별의 영향도 받지 않고 나쁜 기운을 막아 줍니다.' : '어느 행성에도 속하지 않는 카드입니다. 질문의 주인공이나 갈림길처럼 리딩의 중심을 정하는 표지 카드로 읽습니다.'}</p></div>`;
+      return `<div><p class="sub">행성</p><p class="src">${orig}${c.blank ? '번호도 행성도 없는 부적 카드입니다. 어느 별의 영향도 받지 않고 나쁜 기운을 막아 줍니다.' : '어느 행성에도 속하지 않는 카드입니다. 질문의 주인공이나 갈림길처럼 리딩의 중심을 정하는 표지 카드로 읽습니다.'}</p></div>` + mbHTML(c);
     }
     return `<div><p class="sub">행성</p><div class="planet-line"><span class="planet-sym nat-${p.nature}">${p.sym}</span>` +
       `<div><p><strong>${p.ko}</strong> · ${p.nature === '길' ? '길성' : p.nature === '흉' ? '흉성' : '중성'} · ${p.day} · 일의 속도: ${p.speed}</p>` +
-      `<p class="src">${orig}${esc(p.desc)}</p></div></div></div>`;
+      `<p class="src">${orig}${esc(p.desc)}</p></div></div></div>` + mbHTML(c);
+  }
+  function mbHTML(c) {
+    const m = MB[c.n];
+    if (!m) return '';
+    return '<div class="mb"><p class="sub">오라클 벨린식 풀이</p>' +
+      `<ul class="kw">${m[0].map((k) => `<li>${esc(k)}</li>`).join('')}</ul>` +
+      '<dl class="fortune">' + ['사랑', '일', '돈', '건강'].map((label, i) => `<dt>${label}</dt><dd>${esc(m[i + 1])}</dd>`).join('') + '</dl></div>';
   }
   function bodyHTML(c, focus) {
     return tagsHTML(c) +
@@ -213,6 +231,16 @@
       Object.keys(WITH_NEG).forEach((n) => { if (has(Number(n))) lines.push(WITH_NEG[n]); });
       if (soothers.length) {
         lines.push(`${soothers.map((c) => c.ko).join(', ')} 카드가 ${negs.map((c) => c.ko).join(', ')} 카드의 기운을 누그러뜨립니다.`);
+      }
+    }
+    if (has(53) && !negs.length && count.pos > 1) lines.push('파란 행운 카드가 좋은 카드들 곁에 있습니다. 좋은 기운이 한층 커집니다.');
+    if (isLine && cards.length >= 3) {
+      const last = cards[cards.length - 1];
+      const sunBefore = cards.slice(0, -1).some((c) => PLANET_OF[c.n] === 'sun');
+      if (last.tone === 'neg' && (sunBefore || count.pos > 0)) {
+        lines.push(`앞자리의 좋은 카드가 기운을 덜어 주지만, 마지막 자리에 ${last.ko}이(가) 놓였습니다. 흐름이 어디로 이어지는지는 결론 카드가 정하니 아직 무거운 쪽입니다.`);
+      } else if (last.tone === 'pos' && negs.length) {
+        lines.push(`앞에 어두운 카드가 있어도 마지막 자리에 ${last.ko}이(가) 놓였습니다. 흐름은 결국 밝은 쪽으로 이어집니다.`);
       }
     }
     if (has(14) && count.pos > 0) lines.push('악마가 긍정 카드 곁에 있습니다. 좋은 일 뒤에 숨은 유혹과 속임수가 더 도드라집니다.');
