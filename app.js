@@ -84,6 +84,11 @@
   const TOPICS = [['contact', '연락'], ['mind', '속마음'], ['love', '연애'], ['money', '금전'], ['health', '건강'], ['pass', '합격'], ['work', '직업·사업']];
   const FORTUNES = window.FORTUNES || {};
   const COMBOS = window.COMBOS;
+  const PLANETS = window.PLANETS || {};
+  const ORACLE_NAMES = window.ORACLE_NAMES || {};
+  const PLANET_OF = {};
+  Object.entries(PLANETS).forEach(([key, p]) => p.cards.forEach((n) => { PLANET_OF[n] = key; }));
+  const planetOf = (c) => PLANETS[PLANET_OF[c.n]];
 
   const TONE = { pos: '긍정', neu: '중립', neg: '부정' };
 
@@ -126,7 +131,9 @@
   function tagsHTML(c) {
     return `<div class="tags"><span class="tag tone-${c.tone}">${TONE[c.tone]}</span>` +
       (c.soothe ? '<span class="tag">부정 카드 완화</span>' : '') +
-      (c.tone === 'neu' ? '<span class="tag">주변 카드 영향</span>' : '') + '</div>';
+      (c.tone === 'neu' ? '<span class="tag">주변 카드 영향</span>' : '') +
+      (planetOf(c) ? `<span class="tag planet-tag nat-${planetOf(c).nature}"><b>${planetOf(c).sym}</b>${planetOf(c).ko}</span>` : '<span class="tag">행성 없음</span>') +
+      '</div>';
   }
   function fortuneHTML(c, focus) {
     const f = FORTUNES[c.n];
@@ -136,11 +143,22 @@
         `<dt${key === focus ? ' class="is-focus"' : ''}>${label}</dt><dd${key === focus ? ' class="is-focus"' : ''}>${esc(f[i])}</dd>`).join('') +
       '</dl></div>';
   }
+  function planetHTML(c) {
+    const p = planetOf(c);
+    const orig = ORACLE_NAMES[c.n] ? `오라클 벨린에서는 「${esc(ORACLE_NAMES[c.n])}」 카드입니다. ` : '';
+    if (!p) {
+      return `<div><p class="sub">행성</p><p class="src">${orig}${c.blank ? '번호도 행성도 없는 부적 카드입니다. 어느 별의 영향도 받지 않고 나쁜 기운을 막아 줍니다.' : '어느 행성에도 속하지 않는 카드입니다. 질문의 주인공이나 갈림길처럼 리딩의 중심을 정하는 표지 카드로 읽습니다.'}</p></div>`;
+    }
+    return `<div><p class="sub">행성</p><div class="planet-line"><span class="planet-sym nat-${p.nature}">${p.sym}</span>` +
+      `<div><p><strong>${p.ko}</strong> · ${p.nature === '길' ? '길성' : p.nature === '흉' ? '흉성' : '중성'} · ${p.day} · 일의 속도: ${p.speed}</p>` +
+      `<p class="src">${orig}${esc(p.desc)}</p></div></div></div>`;
+  }
   function bodyHTML(c, focus) {
     return tagsHTML(c) +
       `<div><p class="sub">키워드</p><ul class="kw">${c.kw.map((k) => `<li>${esc(k)}</li>`).join('')}</ul></div>` +
       `<div><p class="sub">풀이</p><ul class="notes">${c.notes.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></div>` +
       fortuneHTML(c, focus) +
+      planetHTML(c) +
       `<div><p class="sub">전통 풀이 한 줄</p><p class="src">${esc(c.src)}</p></div>`;
   }
   function titleHTML(c, id) {
@@ -198,11 +216,21 @@
       }
     }
     if (has(14) && count.pos > 0) lines.push('악마가 긍정 카드 곁에 있습니다. 좋은 일 뒤에 숨은 유혹과 속임수가 더 도드라집니다.');
+    const pc = {};
+    cards.forEach((c) => { const k = PLANET_OF[c.n]; if (k) pc[k] = (pc[k] || 0) + 1; });
+    Object.entries(pc).filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1])
+      .forEach(([k]) => lines.push(PLANETS[k].many));
+    if (cards.length >= 3) {
+      const last = cards[cards.length - 1];
+      const lp = planetOf(last);
+      if (lp) lines.push(`시기를 묻는다면 마지막 카드 ${last.ko}의 별, ${lp.ko}을 보세요. 일은 ${lp.speed} 움직이고, ${lp.day}에 기운이 모입니다.`);
+    }
     const neutrals = cards.filter((c) => c.tone === 'neu');
     if (neutrals.length) lines.push(`${neutrals.map((c) => c.ko).join(', ')} 카드는 중립입니다. 바로 옆 카드의 색을 입혀 읽으세요.`);
 
     return '<h3>함께 읽기</h3>' +
-      `<p class="tally"><span class="tone-pos">긍정 ${count.pos}</span><span class="tone-neu">중립 ${count.neu}</span><span class="tone-neg">부정 ${count.neg}</span></p>` +
+      `<p class="tally"><span class="tone-pos">긍정 ${count.pos}</span><span class="tone-neu">중립 ${count.neu}</span><span class="tone-neg">부정 ${count.neg}</span>` +
+      Object.keys(PLANETS).filter((k) => pc[k]).map((k) => `<span class="pl" title="${PLANETS[k].ko}">${PLANETS[k].sym} ${pc[k]}</span>`).join('') + '</p>' +
       `<ul>${lines.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
   }
 
@@ -331,13 +359,31 @@
   /* ── 도감 ─────────────────────────── */
   function renderLibrary() {
     $('cardGrid').innerHTML = CARDS.map((c, i) =>
-      `<button type="button" class="card-tile" data-i="${i}" data-tone="${c.tone}" aria-label="${esc(c.ko)} 풀이 보기">` +
+      `<button type="button" class="card-tile" data-i="${i}" data-tone="${c.tone}" data-planet="${PLANET_OF[c.n] || 'none'}" aria-label="${esc(c.ko)} 풀이 보기">` +
       `${faceHTML(c, true)}<span class="tile-name"><b>${numLabel(c)}</b>${esc(c.ko)}</span></button>`).join('');
     const n = (t) => CARDS.filter((c) => c.tone === t).length;
     $('cntAll').textContent = CARDS.length;
     $('cntPos').textContent = n('pos');
     $('cntNeu').textContent = n('neu');
     $('cntNeg').textContent = n('neg');
+    $('filters').insertAdjacentHTML('beforeend', '<span class="chip-sep" aria-hidden="true"></span>' +
+      Object.entries(PLANETS).map(([k, p]) =>
+        `<button type="button" class="chip" data-tone="${k}" aria-pressed="false"><b class="chip-sym">${p.sym}</b>${p.ko}</button>`).join(''));
+  }
+
+  /* ── 행성 도감 ─────────────────────── */
+  function renderPlanets() {
+    const el = $('planetGrid');
+    if (!el) return;
+    el.innerHTML = Object.values(PLANETS).map((p) =>
+      `<article class="planet nat-${p.nature}">` +
+      `<header><span class="planet-sym">${p.sym}</span><div><h3>${p.ko} <span>${p.fr}</span></h3>` +
+      `<p class="planet-meta">${p.nature === '길' ? '길성' : p.nature === '흉' ? '흉성' : '중성'} · ${p.day} · ${p.metal}</p></div></header>` +
+      `<p>${esc(p.desc)}</p>` +
+      `<ul class="kw">${p.kw.map((k) => `<li>${esc(k)}</li>`).join('')}</ul>` +
+      `<dl class="planet-facts"><dt>속도</dt><dd>${esc(p.speed)}</dd><dt>몸</dt><dd>${esc(p.body)}</dd></dl>` +
+      `<p class="planet-cards">${p.cards.map((n) => `<button type="button" class="pc" data-i="${n - 1}">${n} ${esc(CARDS[n - 1].ko)}</button>`).join('')}</p>` +
+      '</article>').join('');
   }
 
   /* ── 이벤트 ───────────────────────── */
@@ -383,7 +429,7 @@
       b.setAttribute('aria-pressed', String(on));
     });
     $('cardGrid').querySelectorAll('.card-tile').forEach((t) => {
-      t.hidden = tone !== 'all' && t.dataset.tone !== tone;
+      t.hidden = tone !== 'all' && t.dataset.tone !== tone && t.dataset.planet !== tone;
     });
   });
 
@@ -395,6 +441,15 @@
     dialog.showModal();
     dialog.scrollTop = 0;
   });
+  if ($('planetGrid')) {
+    $('planetGrid').addEventListener('click', (e) => {
+      const b = e.target.closest('.pc');
+      if (!b) return;
+      $('dialogBody').innerHTML = dialogHTML(CARDS[Number(b.dataset.i)]);
+      dialog.showModal();
+      dialog.scrollTop = 0;
+    });
+  }
   $('dialogClose').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
 
@@ -412,4 +467,5 @@
 
   renderSpreadOptions();
   renderLibrary();
+  renderPlanets();
 })();

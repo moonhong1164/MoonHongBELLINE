@@ -20,6 +20,7 @@
     <a href="#draw">카드 뽑기</a>
     <a href="#library">카드 도감</a>
     <a href="#guide">읽는 법</a>
+    <a href="#stars">별</a>
     <a href="#about">덱 이야기</a>
   </nav>
 </header>
@@ -68,7 +69,7 @@
   <section class="library" id="library">
     <h2>카드 도감</h2>
     <p class="section-lead">1번부터 52번, 그리고 번호 없는 파란 카드까지. 눌러서 키워드와 풀이를 펼쳐 보세요.</p>
-    <div class="filters" id="filters" role="group" aria-label="성격별로 보기">
+    <div class="filters" id="filters" role="group" aria-label="성격·행성별로 보기">
       <button type="button" class="chip is-on" data-tone="all" aria-pressed="true">전체 <span id="cntAll"></span></button>
       <button type="button" class="chip" data-tone="pos" aria-pressed="false">긍정 <span id="cntPos"></span></button>
       <button type="button" class="chip" data-tone="neu" aria-pressed="false">중립 <span id="cntNeu"></span></button>
@@ -111,6 +112,10 @@
         <p>한 달 운세처럼 자리에 주제가 정해진 배열에서는 그 자리에 맞는 줄을 밝게 표시해 드립니다.</p>
       </li>
       <li>
+        <h3>별을 봅니다</h3>
+        <p>카드마다 오라클 벨린에서 받은 행성이 붙어 있습니다. 같은 별이 여러 장 나오면 그 별이 리딩의 분위기를 정하고, 마지막 카드의 별로 일의 속도와 때를 가늠합니다. 자세한 내용은 ‘일곱 개의 별’에 있습니다.</p>
+      </li>
+      <li>
         <h3>나쁜 카드를 쓰는 법</h3>
         <p>사고나 장애 카드가 나왔다고 덮어 버리지 마세요. 그 카드가 가리키는 변수가 내 상황에서 무엇일지 떠올려 보고, 미리 대비할 것을 찾는 데 쓰면 됩니다.</p>
         <p>좋은 카드는 그 카드가 말하는 강점을 더 키우라는 뜻으로, 나쁜 카드는 그와 관련된 일을 피하라는 뜻으로 받아들이세요.</p>
@@ -122,6 +127,38 @@
       <li><strong>건강·법률·돈 문제는 전문가에게.</strong>카드에 병원이나 소송이 보여도 그것은 살펴보라는 신호이지 진단이 아닙니다.</li>
       <li><strong>같은 질문을 되풀이해 뽑지 마세요.</strong>마음에 드는 답이 나올 때까지 뽑으면 어떤 답도 믿을 수 없게 됩니다.</li>
     </ul>
+  </section>
+
+  <section class="prose" id="stars">
+    <h2>일곱 개의 별</h2>
+    <p class="section-lead">호로스코프 벨린은 카드에서 행성 표시를 지웠지만, 뿌리인 오라클 벨린에서는 52장 가운데 49장이 일곱 행성에 일곱 장씩 나뉘어 있습니다. 같은 카드가 받은 별을 옮겨 오면 이 덱도 별과 함께 읽을 수 있습니다.</p>
+
+    <div class="about-grid">
+      <article>
+        <h3>7 × 7 + 4 = 53</h3>
+        <p>옛사람들이 맨눈으로 보던 일곱 별, 곧 태양·달·수성·금성·화성·목성·토성이 일곱 장씩 49장을 맡습니다. 일주일의 일곱 요일이 이 일곱 별에서 이름을 얻었고, 49는 한 해의 주(週)에 가까운 수입니다.</p>
+        <p>남은 네 장, 남자의 생각·여자의 생각·운명·파란 카드는 어느 별에도 속하지 않습니다. 질문의 주인공과 갈림길, 그리고 부적이라 별의 영향 밖에 둡니다.</p>
+      </article>
+      <article>
+        <h3>길성과 흉성</h3>
+        <p>점성술의 오랜 전통에서 목성은 큰 길성, 금성은 작은 길성, 토성은 큰 흉성, 화성은 작은 흉성입니다. 벨린에서는 태양도 좋은 별로 읽습니다. 달과 수성은 곁의 별에 따라 색이 바뀝니다.</p>
+        <p>다만 토성 아래에도 보호·후원처럼 하늘의 은총을 뜻하는 카드가 있습니다. 별은 분위기를, 카드는 구체적인 일을 말한다고 생각하세요.</p>
+      </article>
+      <article>
+        <h3>별로 읽는 세 가지 방법</h3>
+        <p><strong>많은 별</strong> 펼친 카드에서 같은 별이 두 장 이상이면 그 별이 이 리딩의 날씨입니다.</p>
+        <p><strong>속도</strong> 달과 수성은 빠르고, 목성은 넉넉히, 토성은 느리게 갑니다. 일이 언제쯤 움직일지 가늠할 때 씁니다.</p>
+        <p><strong>요일</strong> 마지막 카드의 별이 다스리는 요일에 일이 움직이기 쉽다고 봅니다. 연락을 기다리거나 날을 고를 때 참고하세요.</p>
+      </article>
+      <article>
+        <h3>짝은 어떻게 맞췄나</h3>
+        <p>호로스코프 벨린의 카드는 오라클 벨린 카드와 주제가 하나씩 대응합니다. 메시지는 Nouvelle(소식), 까치는 Vol·Perte(도난·손실), 바람개비는 Inconstance(변덕)처럼 같은 뜻의 카드를 찾아 그 카드의 별을 옮겼습니다.</p>
+        <p>번호 순서는 두 덱이 조금 다릅니다. 그래서 같은 별의 카드가 번호로는 떨어져 있기도 합니다.</p>
+      </article>
+    </div>
+
+    <div class="planet-grid" id="planetGrid"></div>
+    <p class="fine">카드 이름을 누르면 그 카드의 풀이가 열립니다. 몸과 금속의 대응은 서양 전통 점성술의 상징이며, 건강 진단을 대신하지 않습니다.</p>
   </section>
 
   <section class="prose" id="about">
@@ -198,6 +235,7 @@
 <script src="https://moonhong1164.github.io/MoonHongCardSites/journal-box.js"></script>
 <script src="cards.js"></script>
 <script src="fortunes.js"></script>
+<script src="planets.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
